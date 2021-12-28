@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="css/all.css">
+  <link rel="stylesheet" href="css/animate.min.css" />
+
+  <link rel="stylesheet" href="css/hover.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <link rel="js" href="css/bootstrap.js" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+  </script>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      background-color: rgb(176, 211, 208);
+    }
+
+    .badge {
+      width: 35px;
+      height: 35px;
+      left: -1.5rem;
+      background-color: rgb(72, 132, 189);
+      text-shadow: none;
+    }
+
+    .fa-pizza-slice {
+      color: #f0e052;
+      text-shadow: 2px 0 0px #800040, 3px 2px 0px rgba(77, 0, 38, 0.5), 3px 0 3px #dbdf15, 5px 0 3px #c4d61d, 6px 2px 3px rgba(77, 0, 13, 0.5), 6px 0 9px #FF5500, 8px 0 9px #802A00, 9px 2px 9px rgba(77, 25, 0, 0.5), 9px 0 18px #FFD500, 11px 0 18px #806A00, 12px 2px 18px rgba(77, 66, 0, 0.5), 12px 0 30px #D4FF00, 14px 0 30px #6A8000,
+        15px 2px 30px rgba(228, 248, 45, 0.767), 17px 2px 45px rgba(255, 253, 127, 0.5);
+    }
+
+    .fa-pizza-slice:hover {
+      transform: rotate(60deg);
+      transition: 1s;
+    }
+
+
+    i.fav-star {
+      color: #005900;
+      text-shadow: #FFFCA8 2px 2px 0px, #9C9C9C 4px 4px 0px;
+    }
+
+    .fa-trash-alt {
+      color: #000000;
+
+      text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c;
+    }
+
+    .fa-shopping-cart {
+      color: #005900;
+      text-shadow: #e4d872 2px 2px 0px, #9C9C9C 4px 4px 0px;
+    }
+
+    @media (max-width: 1100px) {
+
+      .modal-btn {
+        left: 45% !important;
+
+      }
+
+    }
+
+    @media (max-width: 990px) {
+      .modal-btn {
+        /* left: 60% !important; */
+        top: -2.5% !important;
+        font-size: 10px !important;
+
+
+      }
+    }
+
+    @media (max-width: 767px) {
+      .modal-btn {
+        left: 70% !important;
+        width: 30px !important;
+        font-size: 10px !important;
+        white-space: nowrap;
+      }
+
+      .fav-up {
+
+
+        justify-content: center !important;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <div class="section mt-5 position-fixed justify-content-around modal-btn "
+    style="top: -15px;z-index: 10000; left: 50%;">
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary fs-3 mx-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+      onclick="modalTotal()" style="z-index: 1000;">
+      Bill
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Items Selected</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body fs-2">
+
+          </div>
+
+          <div class="modal-footer total fs-2"></div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary fs-4" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary fs-4">Print</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <nav class="navbar container-fluid fixed-top shadow   " style="background-color: #e3f2fd;">
+    <div class="row w-100 px-3 justify-content-between mx-auto ">
+
+
+
+      <div class="row col-12 col-md-6   p-3 hvr-grow">
+        <i class="col-auto fs-1 fas fa-pizza-slice text-danger "></i>
+        <h1 class="col text-muted">Pizza Restuarant</h1>
+      </div>
+
+
+      <div class="col-12 col-md-6 fav-up px-0">
+        <div class="d-flex justify-content-end">
+
+          <!-- trash -->
+          <i class="fas fa-trash-alt hvr-grow text-muted mx-5 p-2" title="Delete All" onclick="trash()"
+            style="font-size: 50px;"></i>
+
+
+
+
+
+          <!--Cart -->
+
+          <a href="purchased.html"><i class="navbar-item fas fa-shopping-cart  hvr-grow text-danger  p-1 "
+              style="font-size: 60px;">
+              <span
+                class="totalAmount badge  rounded-circle fs-5 p-1 text-center hvr-pop position-absolute ">0</span></i></a>
+
+
+
+
+          <!--Favorites-->
+          <i class="fav-star navbar-item fas fa-star hvr-grow p-2  mx-5 text-warning" title="Favorites"
+            style="font-size: 60px;">
+            <span class="favCount badge  rounded-circle fs-5 p-1 text-center hvr-pop position-absolute">0</span></i>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="container text-center py-5 " style="margin-top:7%;">
+
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+
+
+      <div class="col">
+        <div class="card h-100">
+          <img src="photos/01.jpg" class="card-img-top " alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Green Salad</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+              content. This content is a little bit longer.</p>
+          </div>
+          <div class="card-footer">
+            <span class="float-start fs-3">15 </span> <button class="btn btn-info float-end" title="Buy"> <i
+                class="fas fa-hand-holding-usd fs-3 hvr-pop"></i></button>
+            <i class="fav far fa-star fs-4 hvr-pop p-2 float-end mx-3"></i>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <div class="card h-100">
+          <img src="photos/02.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Pizza </h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+          </div>
+          <div class="card-footer">
+            <span class="float-start fs-3">20</span> <button class="btn btn-info float-end" title="Buy"> <i
+                class="fas fa-hand-holding-usd fs-3 hvr-pop"></i></button>
+            <i class="fav far fa-star fs-4 hvr-pop p-2 float-end mx-3"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100">
+          <img src="photos/03.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Soup</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+              content. This card has even longer content than the first to show that equal height action.</p>
+          </div>
+          <div class="card-footer">
+            <span class="float-start fs-3">30</span> <button class="btn btn-info float-end" title="Buy"> <i
+                class="fas fa-hand-holding-usd fs-3 hvr-pop"></i></button>
+            <i class="fav far fa-star fs-4 hvr-pop p-2 float-end mx-3"></i>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col">
+        <div class="card h-100">
+          <img src="photos/04.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Pasta</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+              content. This content is a little bit longer.</p>
+          </div>
+          <div class="card-footer">
+            <span class="float-start fs-3">25</span> <button class="btn btn-info float-end" title="Buy"> <i
+                class="fas fa-hand-holding-usd fs-3 hvr-pop"></i></button>
+            <i class="fav far fa-star fs-4 hvr-pop p-2 float-end mx-3"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100">
+          <img src="photos/05.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Grills</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+              content. This content is a little bit longer.</p>
+          </div>
+          <div class="card-footer">
+            <span class="float-start fs-3">55</span> <button class="btn btn-info float-end" title="Buy"> <i
+                class="fas fa-hand-holding-usd fs-3 hvr-pop"></i></button>
+            <i class="fav far fa-star fs-4 hvr-pop p-2 float-end mx-3"></i>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <div class="card h-100">
+          <img src="photos/06.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Dessert</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+              content. This content is a little bit longer.</p>
+          </div>
+          <div class="card-footer">
+            <span class="float-start fs-3">35</span> <button class="btn btn-info float-end" title="Buy"> <i
+                class="fas fa-hand-holding-usd fs-3 hvr-pop"></i></button>
+            <i class="fav far fa-star fs-4 hvr-pop p-2 float-end mx-3"></i>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+
+
+
+
+
+  <link href="java.js">
+
+  <script src="java.js"> </script>
+</body>
+
+</html>
